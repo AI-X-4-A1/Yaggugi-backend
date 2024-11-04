@@ -1,0 +1,18 @@
+version: '3.8'
+
+services:
+  app:
+    build: .
+    ports:
+      - "8080:8080"
+    environment:
+      - MYSQL_HOST=host.docker.internal # Docker가 로컬 환경의 MySQL에 접근할 수 있게 설정
+      - MYSQL_USER=${MYSQL_USER}
+      - MYSQL_PASSWORD=${MYSQL_PASSWORD}
+      - MYSQL_DATABASE=${MYSQL_DATABASE}
+      - JWT_SECRET=${JWT_SECRET}
+      - GOOGLE_CLIENT_ID=${GOOGLE_CLIENT_ID}
+      - GOOGLE_CLIENT_SECRET=${GOOGLE_CLIENT_SECRET}
+      - API_BASE_URL=${API_BASE_URL}
+      - OAUTH2_REDIRECT_URI=${OAUTH2_REDIRECT_URI}
+      - CLIENT_URL=${CLIENT_URL}

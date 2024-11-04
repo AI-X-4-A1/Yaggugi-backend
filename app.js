@@ -9,11 +9,12 @@ const authRoutes = require('./routes/authRoutes');
 const app = express();
 
 // MySQL 데이터베이스 연결 및 동기화
-sequelize.sync().then(() => {
+sequelize.sync({ alter: true }).then(() => {
   console.log("MySQL에 연결되었습니다");
 }).catch((err) => {
   console.error("MySQL 연결 오류:", err);
 });
+
 
 // CORS 설정
 app.use(cors({
