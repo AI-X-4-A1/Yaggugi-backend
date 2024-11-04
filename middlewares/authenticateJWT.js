@@ -7,13 +7,14 @@ const authenticateJWT = (req, res, next) => {
     return res.status(401).json({ message: '토큰이 필요합니다' });
   }
 
-  jwt.verify(token, process.env.JWT_SECRET, (err, user) => {
+  jwt.verify(token, process.env.JWT_SECRET, (err, decoded) => {
     if (err) {
       return res.status(403).json({ message: '토큰이 유효하지 않습니다' });
     }
-    req.user = user; // 토큰이 유효한 경우 사용자 정보 설정
+    req.user = decoded.user; // 토큰에서 user 객체를 가져와 req.user에 할당
     next();
   });
 };
 
 module.exports = authenticateJWT;
+
